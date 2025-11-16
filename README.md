@@ -176,3 +176,8 @@ docker run -d \
 После запуска, приложение стало доступно по публичному IP и подтвердило успешное соединение с базой данных.
 
 <img width="1920" height="1080" alt="Снимок экрана (1851)" src="https://github.com/user-attachments/assets/88b7122a-19a4-4b30-bb5f-26573eca3510" />
+
+<img width="1920" height="1080" alt="Снимок экрана (1860)" src="https://github.com/user-attachments/assets/1f53fb7a-6b7a-45d3-add5-e450d345a5b7" />
+
+
+
