@@ -45,7 +45,7 @@ variable "vm_disk_type" {
 variable "container_optimized_image_id" {
   description = "ID of the Yandex Container Optimized Image (COI) with Docker preinstalled."
   type        = string
-  default     = "fd8b2p3ts70pbpidnm" # ID с вашего скриншота
+  default     = "fd8b2p3ts70pbpidnm"
 }
 
 variable "ssh_user" {
