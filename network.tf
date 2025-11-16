@@ -16,7 +16,6 @@ resource "yandex_vpc_security_group" "app_sg" {
   egress {
     protocol          = "ANY"
     v4_cidr_blocks    = var.allowed_cidr
-    description       = "Allow all outgoing traffic"
   }
 
   dynamic "ingress" {
@@ -25,13 +24,11 @@ resource "yandex_vpc_security_group" "app_sg" {
       protocol          = "TCP"
       port              = ingress.key
       v4_cidr_blocks    = var.allowed_cidr
-      description       = ingress.value
     }
   }
 
   ingress {
     protocol          = "ANY"
     predefined_target = "self_security_group"
-    description       = "Allow traffic inside the security group"
   }
 }
