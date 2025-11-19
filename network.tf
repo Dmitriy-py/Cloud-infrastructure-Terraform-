@@ -1,4 +1,3 @@
- HEAD
 module "vpc_network" {
   source = "./modules/vpc"
 
@@ -43,4 +42,3 @@ resource "yandex_vpc_security_group" "app_sg" {
     predefined_target = "self_security_group"
   }
 }
- bcf78197abceb08d5c70ffc1fc592f3180689d28
