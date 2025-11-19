@@ -6,24 +6,17 @@ data "yandex_iam_service_account" "app_sa" {
   name = "sa-profile"
 }
 
-
 locals {
   ssh_key_content = file(var.ssh_public_key_path)
+
   vm_metadata = {
-    user-data = <<-EOT
-      #cloud-config
-      users:
-        - name: ${var.ssh_user}
-          groups: sudo
-          shell: /bin/bash
-          sudo: 'ALL=(ALL) NOPASSWD:ALL'
-          ssh_authorized_keys:
-            - ${local.ssh_key_content}
-      runcmd:
-        - [ sh, -c, "sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose" ]
-        - [ sh, -c, "sudo chmod +x /usr/local/bin/docker-compose" ]
-        - [ sh, -c, "sudo usermod -aG docker ${var.ssh_user}" ]
-      EOT
+    user-data = templatefile("${path.module}/cloud-init.yaml.tftpl", {
+      ssh_user       = var.ssh_user
+      ssh_public_key = local.ssh_key_content
+      db_host        = yandex_mdb_mysql_cluster.app_db_cluster.host[0].fqdn
+      db_password    = var.db_password
+      registry_id    = yandex_container_registry.app_registry.id
+    })
   }
 }
 
@@ -54,8 +47,8 @@ resource "yandex_compute_instance" "app_vm" {
   }
 
   network_interface {
-    subnet_id          = yandex_vpc_subnet.main.id
-    security_group_ids = [yandex_vpc_security_group.app_sg.id]
+    subnet_id          = module.vpc_network.subnet_id
+    security_group_ids = module.vpc_network.security_group_ids
     nat                = true
   }
 

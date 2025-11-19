@@ -1,0 +1,12 @@
+users:
+  - name: ${ssh_user}
+    groups: sudo
+    shell: /bin/bash
+    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+    ssh_authorized_keys:
+      - ${ssh_public_key}
+
+runcmd:
+  - [ sh, -c, "IAM_TOKEN=$(curl -s 'http://169.254.169.254/computeMetadata/v1/instance/service-accounts/default/token' -H 'Metadata-Flavor: Google' | jq -r '.access_token')" ]
+  - [ sh, -c, "echo $IAM_TOKEN | docker login --username iam --password-stdin cr.yandex" ]
+  - [ sh, -c, "docker run -d --restart=always --name app-web -p 80:5000 -e DB_HOST='${db_host}' -e DB_USER='app_user' -e DB_PASSWORD='${db_password}' -e DB_NAME='app_database' cr.yandex/${registry_id}/app-final-project:v3" ]

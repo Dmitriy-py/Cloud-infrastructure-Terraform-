@@ -1,7 +1,9 @@
 resource "yandex_mdb_mysql_cluster" "app_db_cluster" {
   name        = "app-mysql-cluster"
   environment = "PRESTABLE" 
-  network_id  = yandex_vpc_network.main.id
+
+  network_id  = module.vpc_network.network_id 
+
   version     = var.db_version
 
   resources {
@@ -12,8 +14,9 @@ resource "yandex_mdb_mysql_cluster" "app_db_cluster" {
 
   host {
     zone      = var.default_zone
-    subnet_id = yandex_vpc_subnet.main.id
+    subnet_id = module.vpc_network.subnet_id 
   }
+  security_group_ids = module.vpc_network.security_group_ids
 
   database {
     name = "app_database"
