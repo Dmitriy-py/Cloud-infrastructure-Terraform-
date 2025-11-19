@@ -7,7 +7,6 @@ output "database_fqdn" {
 }
 
 output "main_subnet_id" {
-  description = "ID of the main VPC subnet created by the module"
   value       = module.vpc_network.subnet_id
 }
 
