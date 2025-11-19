@@ -35,12 +35,20 @@ variable "vm_disk_size" {
   default     = 20
 }
 
+HEAD
 variable "vm_disk_type" {         
+
+variable "vm_disk_type" {
+ bcf78197abceb08d5c70ffc1fc592f3180689d28
   type        = string
   default     = "network-ssd"
 }
 
+ HEAD
 variable "container_optimized_image_id" {    
+
+variable "container_optimized_image_id" {
+ bcf78197abceb08d5c70ffc1fc592f3180689d28
   type        = string
   default     = "fd8b2p3ts70pbpidnm"
 }
