@@ -158,7 +158,7 @@ docker push cr.yandex/${REGISTRY_ID}/app-final-project:v2
 
 ```bash
 # ПЕРЕМЕННЫЕ
-MYSQL_HOST="rc1a-gr8unng38btosq3r.mdb.yandexcloud.net" 
+MYSQL_HOST="rc1a-b13ins80epaogmma.mdb.yandexcloud.net" 
 DB_PASSWORD="AppProjectSecurePwd123" 
 REGISTRY_PATH="cr.yandex/crp10qun292h5l306r4e/app-final-project:v3"
 
