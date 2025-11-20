@@ -199,4 +199,12 @@ docker run -d \
 
 <img width="1920" height="1080" alt="Снимок экрана (1911)" src="https://github.com/user-attachments/assets/b55cec25-6e19-46d0-b3df-92ab74363900" />
 
+## ` Ссылка: ` https://github.com/Dmitriy-py/Cloud-infrastructure-Terraform-/tree/0ceb44d5a6a1566ae63659eb162be96601161410/modules/vpc
+
+
+
+
+
+
+
 
